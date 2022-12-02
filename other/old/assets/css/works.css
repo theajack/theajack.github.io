@@ -1,0 +1,33 @@
+body{
+  background-image:url('https://cdn.jsdelivr.net/gh/theajack/theajack.github.com/assets/images/background3.jpg');
+}
+.float{
+  background-color:#fff;
+  border-radius:50%;
+  position:absolute;
+  border:1px solid #000;
+  color:#000;
+  text-align:center;
+  font-size:20px;
+  cursor:pointer;
+  background-image:url('https://cdn.jsdelivr.net/gh/theajack/theajack.github.com/assets/images/p0.png');
+  background-size:cover;
+  box-shadow: 0 0 50px 5px #aaa;
+  color:#fff;
+}
+.float img{
+  width: 60%;
+  border-radius:15px;
+}
+.float img.hover{
+  transform: scale(1);
+  transition: transform .5s linear;
+  -webkit-transition: -webkit-transform .5s linear;
+}
+.float img.hover:hover{
+  transform: scale(3);
+  box-shadow:#aaa 0 0 1px 1px;
+}
+.float span{
+  display:block;
+}

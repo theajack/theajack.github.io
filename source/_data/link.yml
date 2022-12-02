@@ -1,0 +1,135 @@
+- class_name: 开发
+  class_desc: 第三方包
+  link_list:
+    - name: Cnchar
+      link: https://shiyix.cn/cnchar
+      icon: book
+      descr: 功能强大的汉字工具库
+    - name: Disable-Devtool
+      link: https://shiyix.cn/disable-devtool
+      icon: shield
+      descr: 一行代码禁用f12开发者工具
+    - name: JSBox
+      link: https://shiyix.cn/jsbox
+      icon: code
+      descr: JS在线运行沙箱环境
+    - name: tc-comment
+      link: https://github.com/theajack/comment
+      icon: comment-alt
+      descr: 开箱即用的评论系统
+    - name: idb-logger
+      link: https://github.com/theajack/logger
+      icon: file-code
+      descr: 前端高性能日志系统
+    - name: string-worker
+      link: https://github.com/theajack/string-worker
+      icon: stack
+      descr: 让创建worker更轻松
+    - name: message-board
+      link: https://shiyix.cn/message-board
+      icon: comments-alt
+      descr: 零代码接入留言板
+    - name: easy-icon
+      link: https://shiyix.cn/easy-icon
+      icon: picture
+      descr: 丰富的css图标库
+    - name: tc-event
+      link: https://github.com/theajack/tc-event
+      icon: random
+      descr: 功能强大的事件机制
+    - name: pure-v
+      link: https://github.com/theajack/pure-v
+      icon: checked
+      descr: 轻量易用的文本校验库
+    - name: tc-qrcode
+      link: https://shiyix.cn/qrcode
+      icon: qrcode
+      descr: 二维码生成解析工具
+    - name: cross-window-message
+      link: https://shiyix.cn/cross-window-message
+      icon: window-alt
+      descr: 优雅的跨窗口通信方案
+    - name: mp-mixin
+      link: https://github.com/theajack/mp-mixin
+      icon: rocket
+      descr: 小程序mixin方案
+    - name: count-code-line
+      link: https://github.com/theajack/count-code-line
+      icon: sliders
+      descr: 计算代码行工具
+    - name: easy-test-lib
+      link: https://github.com/theajack/easy-test-lib
+      icon: check-circle-o
+      descr: 轻量级测试方案
+    - name: ebuild-cli
+      link: https://github.com/theajack/ebuild-cli
+      icon: cogs
+      descr: 快速搭建项目脚手架
+    - name: landscape-simulator
+      link: https://shiyix.cn/landscape-simulator
+      icon: mobile
+      descr: H5横屏模拟器
+    - name: tacl-ui
+      link: https://github.com/theajack/tacl-ui
+      icon: columns
+      descr: 轻量级基础ui库
+    - name: easy-dom
+      link: https://github.com/theajack/easy-dom
+      icon: branch
+      descr: 原生dom操作的封装
+    - name: jetee
+      link: https://shiyix.cn/jetee
+      icon: file-code
+      descr: 轻量级前端框架
+
+- class_name: 工具
+  class_desc: 在线工具箱
+  link_list:
+    - name: 野鸡大学甄别
+      link: https://shiyix.cn/university
+      icon: building
+      descr: 大学查询 & 野鸡大学甄别
+    - name: RGB调配
+      link: https://shiyix.cn/tool/#/color
+      icon: paint-brush
+      descr: RGB颜色调配
+    - name: 抽奖工具
+      link: https://shiyix.cn/lotto/
+      icon: gift
+      descr: 简单的抽奖工具
+    - name: 小工具合集
+      link: https://shiyix.cn/tool
+      icon: wrench
+      descr: For Fun!
+
+- class_name: 游戏
+  class_desc: 玩一玩
+  link_list:
+    - name: 汉字打飞机
+      link: https://shiyix.cn/type
+      icon: plane
+      descr: 使用键盘打字打飞机
+    - name: 打字弹钢琴
+      link: https://shiyix.cn/pinao
+      icon: music
+      descr: 敲敲键盘弹钢琴
+    - name: 炸弹人大作战
+      link: https://shiyix.cn/bombbattle
+      icon: exclamation-sign
+      descr: 炸弹人大作战小游戏
+    - name: 读心术
+      link: https://shiyix.cn/magic/
+      icon: eye-open
+      descr: 一个小魔术
+    - name: 合成大篮球
+      link: https://shiyix.cn/laya-game
+      icon: circle-blank
+      descr: 合成一个大篮球
+    - name: 指纹预测
+      link: https://shiyix.cn/predict/
+      icon: bullseye
+      descr: 据说指纹可以决定性格？
+    - name: 迷宫
+      link: https://shiyix.cn/maze/
+      icon: layout
+      descr: 简易迷宫小游戏

@@ -1,0 +1,323 @@
+<!--
+ * @Author: tackchen
+ * @Date: 2022-04-05 11:58:14
+ * @LastEditors: tackchen
+ * @LastEditTime: 2022-04-05 11:58:15
+ * @FilePath: /theajack.github.com/stat copy.html
+ * @Description: Coding something
+-->
+<!doctype html>
+<html lang="zh-Hans" class="bg-white" >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>网站访问量数据统计</title>
+  </head>
+  <style type="text/css">
+    *{
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .record:before, .record:after {
+        display: table;
+        content: " ";
+    }
+    .record:after {
+      clear: both;
+    }
+    html{
+      width:100%;
+      height:100%;
+      max-width:600px;
+      background-color:rgb(87, 186, 251);
+      margin:0 auto
+    }
+    body{
+      overflow-y:scroll;
+      position:relative;
+      font-family:Microsoft Yahei;
+    }
+    .record{
+      text-align: center;
+      color: #3c85b5;
+      background-color: rgba(255,255,255,.6);
+    }
+    .record.main{
+      background-color: rgba(255,255,255,.9);
+    }
+    .record.plus{
+      background-color: rgba(0,0,0,.2);
+    }
+    .data{
+      width:14%;
+      float:left;
+      padding: 5px 0;
+      border-top:1px solid rgb(87, 186, 251);
+      border-right:1px solid rgb(87, 186, 251);
+      height: 29px;
+      white-space: nowrap;
+      overflow:hidden;
+    }
+    .data.name{
+      width:33%;
+      cursor:pointer;
+    }
+    .data.date{
+      width:25%;
+    }
+    .data.no-right{
+      border-right:none;
+    }
+    .data.no-top{
+      border-top:none;
+    }
+    .data.detail{
+      text-decoration:underline;
+      cursor:pointer;
+    }
+    #title{
+      font-size:20px;
+      color:#fff;
+      font-weight:bold;
+      text-align:center;
+      padding: 10px 0;
+    }
+    #refresh{
+      width: 100%;
+      color: #3c85b5;
+      background-color: rgba(255,255,255,.5);
+      padding: 8px;
+      text-align: center;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .data.plus{
+      color: #0a0;
+    }
+    #showText{
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 17px;
+      color: #64f369;
+      background-color: rgba(0,0,0,.4);
+      padding: 5px;
+      font-weight: bold;
+      border-radius: 5px;
+      letter-spacing: 2px;
+      display:none;
+      cursor:pointer;
+    }
+    .detail-wrapper{
+      display:none;
+    }
+    .detail-wrapper .record{
+      background-color:rgba(200,200,200,.6);
+      color:rgb(37, 82, 111);
+    }
+    #showText span{
+      color: #fff;
+      font-size: 15px;
+    }
+  </style>
+  <body>
+    <div id="showTextWrapper">
+      <div id="showText" onclick="this.fadeOut()">刷新成功</div>
+    </div>
+    <div id="title">网站访问量数据统计</div>
+    <div id="refresh" onclick="refresh()">刷新</div>
+    <div id="main">
+      <div class="record main">
+        <div class="data name no-top">网站名</div>
+        <div class="data date no-top">接入日期</div>
+        <div class="data no-top">总量</div>
+        <div class="data no-top plus">增量</div>
+        <div class="data no-top">详情</div>
+      </div>
+      <div id="dataWrapper">
+        
+      </div>
+    </div>
+    <script src="assets/js/domain.js"></script>
+    <script src="assets/js/jetter.min.js"></script>
+  </body>
+  <script type="text/javascript">
+  J.ready(function(){
+    jsonp("view","all",function(d){
+      bindData(d);
+    });
+  });
+  var t;
+  function jsonp(type,name,call,ecall){
+    J.jsonp({
+      url:DOMAIN+"stat.aspx",
+      //url:"http://localhost:18295/theajack/stat.aspx",
+      data:{type:type,name:name},
+      success:function(data){
+        call(data.value);
+      },
+      time:15000,
+      timeout:function(err){
+        showInfo("请求超时");
+        if(ecall!=undefined){
+          ecall();
+        }
+      },
+      message:"请求超时"
+    });
+  }
+  function checkPlusNum(data){
+    var now=getDate();
+    var add="";
+    if(J.cookie("stat_date")!=now){
+      add= "+"+data.count;
+    }else{
+      add= "+"+getDiff("id"+data.id+"_stat_count",data.count);
+    }
+    saveCookies(data,now);
+    return add;
+  }
+  function checkCookiePlus(data){
+    var now=getDate();
+    var add="";
+    if(J.cookie("stat_date")!=now){
+      add= "+"+data.cookie_count;
+    }else{
+      add= "+"+getDiff("id"+data.id+"_cookie_count",data.cookie_count);
+    }
+    J.cookie("id"+data.id+"_cookie_count",data.cookie_count,365);
+    return add;
+  }
+  function getDiff(type,num){
+    var lastNum=J.cookie(type);
+    if(lastNum==""||lastNum==undefined){
+      lastNum=0;
+    }
+    return num-lastNum;
+  }
+  function saveCookies(data,date){
+    J.cookie("id"+data.id+"_stat_count",data.count,365);
+    J.cookie("stat_date",date,365);
+  }
+  function bindData(data,isRe){
+    var wrapper=J.id("dataWrapper");
+    data.each(function(item){
+      wrapper.prepend(getOne(item));
+    });
+    if(isRe){
+      showInfo("刷新成功");
+    }else{
+      showInfo("加载完成");
+    }
+  }
+  function refresh(){
+    J.id("dataWrapper").empty();
+    jsonp("view","all",function(d){
+      bindData(d,true);
+    });
+  }
+  function showInfo(text,time){
+    clearTimeout(t);
+    time=J.checkArg(time,1500);
+    J.id("showText").html(text).fadeIn();
+    if(time!="infi"){
+      t=setTimeout(function(){
+        J.id("showText").fadeOut(null,500);
+      },time);
+    }
+  }
+  function getOne(item){
+    var add=checkPlusNum(item);
+    var info=item.name+"<br/><span>cookie量:"+item.cookie_count+"("+checkCookiePlus(item)+")</span>";
+    return J.new("div.record").html('\
+      <div class="data name" onclick="showInfo(\''+info+'\',\'infi\')">'+item.name+'</div>\
+      <div class="data date">'+item.date.split("T")[0].substring(2)+'</div>\
+      <div class="data">'+item.count+'</div>\
+      <div class="data plus">'+add+'</div>\
+      <div class="data detail" detail-state="init" onclick="showDetail(this)">展开</div>\
+    ');
+  }
+  function showDetail(obj){
+    var par=obj.parent();
+    var state=obj.attr("detail-state");
+    if(state=="true"){
+      par.next().slideUp();
+      obj.attr("detail-state","false");
+      obj.txt("展开");
+    }else if(state=="false"){
+      par.next().slideDown();
+      obj.attr("detail-state","true");
+      obj.txt("收起");
+    }else if(state=="init"){
+      obj.attr("detail-state","loading");
+      obj.txt("加载中");
+      var name=par.child(0).txt();
+      jsonp("view",name,function(d){
+        bindDetailData(par,d);
+        obj.attr("detail-state","true");
+        obj.txt("收起");
+      },function(){
+        obj.attr("detail-state","init");
+        obj.txt("展开");
+      });
+    }
+  }
+  function bindDetailData(obj,d){
+    var w=J.new("div.detail-wrapper");
+    d.each(function(item,i){
+      w.prepend(J.new("div.record").html('\
+        <div class="data name">'+(i+1)+'</div>\
+        <div class="data date">'+item.date.split("T")[0].substring(2)+'</div>\
+        <div class="data">'+item.count+'</div>\
+        <div class="data"></div>\
+        <div class="data"></div>\
+      '));
+    });
+    w.css("height",(d.length*29)+"px");
+    obj.after(w);
+    obj.next().slideDown();
+  }
+  
+  Date.prototype.format = function(format) {
+      var o = {
+          "M+": this.getMonth() + 1,
+          // month
+          "d+": this.getDate(),
+          // day
+          "h+": this.getHours(),
+          // hour
+          "m+": this.getMinutes(),
+          // minute
+          "s+": this.getSeconds(),
+          // second
+          "q+": Math.floor((this.getMonth() + 3) / 3),
+          // quarter
+          "S": this.getMilliseconds()
+          // millisecond
+      };
+      if (/(y+)/.test(format) || /(Y+)/.test(format)) {
+          format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      }
+      for (var k in o) {
+          if (new RegExp("(" + k + ")").test(format)) {
+              format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+          }
+      }
+      return format;
+  };
+  function getDate(){
+    return new Date().format("yyyy-MM-dd");
+  }
+  </script>
+</html>
+
+
+
+
+
+
+

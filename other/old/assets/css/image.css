@@ -1,0 +1,78 @@
+.image-wrapper{
+  width:20%;
+  float:left;
+  padding-right:1px;
+}
+html{
+  background-image: url(https://cdn.jsdelivr.net/gh/theajack/theajack.github.com/assets/images/page.jpg);
+}
+body{
+  padding:0;
+  width:1200px;
+  margin:0 auto;
+  background-color: transparent;
+}
+.image-wrapper img{
+  position:relative;
+  z-index:1;
+  width: 100%;
+  display: block;
+  margin-bottom: 1px;
+  cursor:-webkit-zoom-in;
+  transition:transform .2s linear;
+  -webkit-transition:-webkit-transform .3s linear;
+  transform: scale(1);
+}
+.image-wrapper img:hover{
+  transform: scale(1.3);
+  border:2px solid #fff;
+  z-index:2;
+  border-radius:10px;
+}
+#bigWrapper{
+  background-color:transparent;
+  padding:2px 0;
+}
+.zoom-img-wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding:20px 0;
+  background-color: rgba(0,0,0,.7);
+  z-index: 5;
+}
+.zoom-img{
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: -webkit-zoom-out;
+}
+.hide{
+  display:none;
+}
+@media screen and (max-width:1200px) and (min-width:950px) {
+  body{
+    width:950px;
+  }
+}
+@media screen and (max-width:950px) and (min-width:550px) {
+  body{
+    width:92%;
+  }
+  .image-wrapper{
+    width:33.333333%;
+  }
+}
+@media screen and (max-width:550px){
+  body{
+    width:96%;
+    
+  }
+  .image-wrapper{
+    width:50%;
+  }
+}
