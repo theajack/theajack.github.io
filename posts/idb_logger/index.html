@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统 | Tack Chen</title><meta name="keywords" content="indexedDB,webworker,log"><meta name="author" content="tackchen"><meta name="copyright" content="tackchen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="idb-logger🚀 基于 WebWorker 和 indexedDB 的高性能、高容量、高扩展的web端日志系统  在线使用 | English | 更新日志 | 问题反馈 | Gitee 0. 介绍idb-logger 致力于帮助web开发者便捷高效的接入高性能的日志系统，依托于webworker和indexedDB技术，web应用可以已几乎不影响用户体验的方式在浏览器中存入大容量的日志，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统">
+<meta property="og:url" content="https://theajack.github.io/posts/idb_logger/index.html">
+<meta property="og:site_name" content="Tack Chen">
+<meta property="og:description" content="idb-logger🚀 基于 WebWorker 和 indexedDB 的高性能、高容量、高扩展的web端日志系统  在线使用 | English | 更新日志 | 问题反馈 | Gitee 0. 介绍idb-logger 致力于帮助web开发者便捷高效的接入高性能的日志系统，依托于webworker和indexedDB技术，web应用可以已几乎不影响用户体验的方式在浏览器中存入大容量的日志，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&refer=http%3A%2F%2Fi5.3conline.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660488620&t=83a346b5db553d096a7c6f3e991bfcc3">
+<meta property="article:published_time" content="2022-08-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-02T14:05:50.866Z">
+<meta property="article:author" content="tackchen">
+<meta property="article:tag" content="作品">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&refer=http%3A%2F%2Fi5.3conline.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660488620&t=83a346b5db553d096a7c6f3e991bfcc3"><link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/23377279?s=40&v=4"><link rel="canonical" href="https://theajack.github.io/posts/idb_logger/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-02 14:05:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/23377279?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 作品</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tack Chen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 作品</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-12T00:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-02T14:05:50.866Z" title="更新于 2022-12-02 14:05:50">2022-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%BA%93/">工具类库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="idb-logger"><a href="#idb-logger" class="headerlink" title="idb-logger"></a><a target="_blank" rel="noopener" href="https://github.com/theajack/logger">idb-logger</a></h1><h3>🚀 基于 WebWorker 和 indexedDB 的高性能、高容量、高扩展的web端日志系统</h3>
+
+<p><strong><a target="_blank" rel="noopener" href="https://shiyix.cn/jsbox?github=theajack.logger">在线使用</a> | <a target="_blank" rel="noopener" href="https://github.com/theajack/logger">English</a> | <a target="_blank" rel="noopener" href="https://github.com/theajack/logger/blob/master/scripts/version.md">更新日志</a> | <a target="_blank" rel="noopener" href="https://github.com/theajack/logger/issues/new">问题反馈</a> | <a target="_blank" rel="noopener" href="https://gitee.com/theajack/logger">Gitee</a></strong></p>
+<h2 id="0-介绍"><a href="#0-介绍" class="headerlink" title="0. 介绍"></a>0. 介绍</h2><p>idb-logger 致力于帮助web开发者便捷高效的接入高性能的日志系统，依托于webworker和indexedDB技术，web应用可以已几乎不影响用户体验的方式在浏览器中存入大容量的日志，并且在合适的时机上报到服务端，或者由用户自行下载。</p>
+<h3 id="0-1-特性"><a href="#0-1-特性" class="headerlink" title="0.1 特性"></a>0.1 特性</h3><ol>
+<li>支持 WebWorker + indexedDB 存储日志</li>
+<li>可选三种日志存储模式，且当不支持时会自动向下选择支持的模式</li>
+<li>支持不存储模式，只使用idb-logger作为日志生成工具</li>
+<li>支持定义最大存储日志数量，会自动删除最早的记录</li>
+<li>支持下载日志</li>
+<li>支持查询日志，支持多种查询模式</li>
+<li>支持自定义基础数据</li>
+<li>支持基于onReport回调自定义上报</li>
+</ol>
+<h2 id="1-快速使用"><a href="#1-快速使用" class="headerlink" title="1. 快速使用"></a>1. 快速使用</h2><h3 id="1-0-install"><a href="#1-0-install" class="headerlink" title="1.0 install"></a>1.0 install</h3><h4 id="1-0-1-npm-install"><a href="#1-0-1-npm-install" class="headerlink" title="1.0.1 npm install"></a>1.0.1 npm install</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i idb-logger</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Logger</span> <span class="keyword">from</span> <span class="string">&#x27;idb-logger&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-0-2-cdn"><a href="#1-0-2-cdn" class="headerlink" title="1.0.2 cdn"></a>1.0.2 cdn</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/idb-logger/idb-logger.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">IDBLogger</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-快速使用"><a href="#1-1-快速使用" class="headerlink" title="1.1 快速使用"></a>1.1 快速使用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> logger = <span class="keyword">new</span> <span class="title class_">Logger</span>();</span><br><span class="line"></span><br><span class="line">logger.<span class="title function_">log</span>(<span class="string">&#x27;一条普通日志&#x27;</span>);</span><br><span class="line">logger.<span class="title function_">error</span>(<span class="string">&#x27;一条错误日志&#x27;</span>, <span class="string">&#x27;附加信息&#x27;</span>, &#123;<span class="attr">type</span>: <span class="string">&#x27;附加信息&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line">logger.<span class="title function_">download</span>(); <span class="comment">// 下载日志</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-api-介绍"><a href="#1-2-api-介绍" class="headerlink" title="1.2. api 介绍"></a>1.2. api 介绍</h3><p>ts声明：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">class</span> <span class="title class_">Logger</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="attr">version</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">private</span> _store;</span><br><span class="line">    <span class="attr">id</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">storeType</span>: <span class="title class_">TLogStoreType</span>;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">&#123; id, useConsole, storeType, maxRecords, baseInfo, onReport, onDiscard, &#125;?: ILoggerOption</span>);</span><br><span class="line">    <span class="title function_">injectBaseInfo</span>(baseInfo?: <span class="title class_">IBaseInfoOption</span> &amp; <span class="title class_">IJson</span>): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;;</span><br><span class="line">    <span class="title function_">log</span>(...<span class="attr">args</span>: <span class="built_in">any</span>[]): <span class="title class_">Promise</span>&lt;<span class="title class_">IAddReturn</span>&gt;;</span><br><span class="line">    <span class="title function_">error</span>(...<span class="attr">args</span>: <span class="built_in">any</span>[]): <span class="title class_">Promise</span>&lt;<span class="title class_">IAddReturn</span>&gt;;</span><br><span class="line">    <span class="title function_">warn</span>(...<span class="attr">args</span>: <span class="built_in">any</span>[]): <span class="title class_">Promise</span>&lt;<span class="title class_">IAddReturn</span>&gt;;</span><br><span class="line">    <span class="title function_">info</span>(...<span class="attr">args</span>: <span class="built_in">any</span>[]): <span class="title class_">Promise</span>&lt;<span class="title class_">IAddReturn</span>&gt;;</span><br><span class="line">    <span class="keyword">private</span> _logCommon;</span><br><span class="line">    <span class="title function_">close</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">boolean</span>&gt;;</span><br><span class="line">    <span class="title function_">destory</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">boolean</span>&gt;;</span><br><span class="line">    <span class="title function_">clear</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">boolean</span>&gt;;</span><br><span class="line">    <span class="title function_">count</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">number</span>&gt;;</span><br><span class="line">    <span class="title function_">delete</span>(<span class="attr">logid</span>: <span class="built_in">string</span>): <span class="title class_">Promise</span>&lt;<span class="built_in">boolean</span>&gt;;</span><br><span class="line">    <span class="title function_">refreshTraceId</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;;</span><br><span class="line">    <span class="title function_">refreshDurationStart</span>(): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;;</span><br><span class="line">    <span class="title function_">download</span>(&#123; name, filter &#125;?: &#123;</span><br><span class="line">        name?: <span class="built_in">string</span>;</span><br><span class="line">        filter?: <span class="title class_">TFilterOption</span>;</span><br><span class="line">        keys?: <span class="built_in">string</span>[];</span><br><span class="line">    &#125;): <span class="title class_">Promise</span>&lt;<span class="built_in">number</span>&gt;;</span><br><span class="line">    <span class="title function_">get</span>(<span class="attr">logid</span>: <span class="built_in">string</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">ILogDBData</span> | <span class="literal">null</span>&gt;;</span><br><span class="line">    <span class="title function_">getAll</span>(): <span class="title class_">Promise</span>&lt;<span class="title class_">ILogDBData</span>[]&gt;;</span><br><span class="line">    <span class="title function_">filter</span>(filter?: <span class="title class_">TFilterOption</span>): <span class="title class_">Promise</span>&lt;<span class="title class_">ILogDBData</span>[]&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整的 logdata</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">ILogDBData</span> &#123;</span><br><span class="line">    <span class="attr">uid</span>: <span class="built_in">string</span>; <span class="comment">// 用户id 会存储在storage中</span></span><br><span class="line">    <span class="attr">clientid</span>: <span class="built_in">string</span>; <span class="comment">// 客户端id 会存储在storage中</span></span><br><span class="line">    <span class="attr">traceid</span>: <span class="built_in">string</span>; <span class="comment">// 本次访问id，可以通过 refreshTraceId 刷新</span></span><br><span class="line">    <span class="attr">network</span>: <span class="built_in">string</span>; <span class="comment">// 网络状况</span></span><br><span class="line">    <span class="attr">url</span>: <span class="built_in">string</span>; <span class="comment">// 当前url</span></span><br><span class="line">    <span class="attr">ua</span>: <span class="built_in">string</span>; <span class="comment">// 浏览器ua</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">msg</span>: <span class="built_in">string</span>; <span class="comment">// 消息类型，如果log第一个参数是字符串，则取该值</span></span><br><span class="line">    payload?: <span class="built_in">any</span>; <span class="comment">// log的其他参数</span></span><br><span class="line">    <span class="attr">type</span>: <span class="title class_">TLogType</span>; <span class="comment">// log info warn error</span></span><br><span class="line">    <span class="attr">duration</span>: <span class="built_in">number</span>; <span class="comment">// 页面进入到当前日志的时间，可以通过 refreshDurationStart 刷新计时七点</span></span><br><span class="line">    <span class="attr">time</span>: <span class="built_in">string</span>; <span class="comment">// 时间字符串</span></span><br><span class="line">    <span class="attr">timestamp</span>: <span class="built_in">number</span>; <span class="comment">// 时间戳</span></span><br><span class="line">    <span class="attr">logid</span>: <span class="built_in">string</span>; <span class="comment">// 日志唯一id</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-构造函数"><a href="#1-2-1-构造函数" class="headerlink" title="1.2.1 构造函数"></a>1.2.1 构造函数</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Logger</span>(&#123;</span><br><span class="line">  id, <span class="comment">// 指定数据库名称 默认值：default</span></span><br><span class="line">  useConsole, <span class="comment">// 是否打印到控制台 默认 true</span></span><br><span class="line">  storeType, <span class="comment">// 存储模式，默认 idb，支持 idb storage temp none</span></span><br><span class="line">  maxRecords, <span class="comment">// 最大存储记录数 默认10000</span></span><br><span class="line">  baseInfo, <span class="comment">// 注入自定义的基础信息</span></span><br><span class="line">  onReport, <span class="comment">// 当生成日志时触发，可用于自定义上报数据</span></span><br><span class="line">  onDiscard <span class="comment">// 当达到 maxRecords 时触发，丢弃掉的数据</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>storeType</li>
+</ol>
+<p>idb 表示使用indexedDB存储日志，storage 表示使用 localStorage进行存储日志，temp 表示使用js变量存储数据（非持久化），none表示不存储数据（仅将idb-logger作为日志生成工具）</p>
+<p>默认值为idb，当某个存储类型浏览器不支持时，会自动向后选用下一个模式</p>
+<ol start="2">
+<li>maxRecords</li>
+</ol>
+<p>为了降低客户端性能消耗，可以指定一个最大存储数量，当超过这个数量时，logger会自动删除最早的记录并且 触发 onDiscard 回调</p>
+<ol start="3">
+<li>baseInfo</li>
+</ol>
+<p>接受一个json，用于注入日志的基础信息，当与默认baseInfo命名一致时会覆盖默认的baseInfo</p>
+<p>默认的baseInfo <code>clientid, uid, traceid, network, url, ua</code></p>
+<h4 id="1-2-2-打日志"><a href="#1-2-2-打日志" class="headerlink" title="1.2.2 打日志"></a>1.2.2 打日志</h4><p>logger对象上有四个方法：log，error， warn，info</p>
+<p>使用方法类似支持传入任意数量、任意类型的数据</p>
+<p>参数规则</p>
+<ol>
+<li>当第一个参数是 字符串或者数字时，该参数作为log的msg字段，后面的所有参数合并成一个数组作为payload属性</li>
+<li>当第一个参数json时且仅有一个参数，会将该json中的所有属性覆盖到log的属性上</li>
+<li>当第一个参数不是数字或字符串，会将默认值__def__作为msg，所有参数合并成一个数组作为payload属性</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">log</span>(<span class="string">&#x27;start&#x27;</span>); <span class="comment">// 返回Promise&lt;&#123;discard, add&#125;&gt; add 是添加的日志数据。该调用方式符合规则1</span></span><br><span class="line"><span class="keyword">await</span> logger.<span class="title function_">info</span>(&#123;</span><br><span class="line">    <span class="attr">msg</span>: <span class="string">&#x27;start&#x27;</span>, <span class="comment">// 写入message</span></span><br><span class="line">    <span class="attr">time</span>: <span class="string">&#x27;xxxx&#x27;</span>, <span class="comment">// 覆盖log的属性</span></span><br><span class="line">    <span class="attr">your_custom</span>: <span class="string">&#x27;xxxx&#x27;</span>, <span class="comment">// 自定义属性</span></span><br><span class="line">&#125;); <span class="comment">// 该调用方式符合规则2</span></span><br><span class="line"><span class="keyword">await</span> logger.<span class="title function_">warn</span>(&#123;&#125;, [], <span class="string">&#x27;&#x27;</span>, <span class="number">1</span>); <span class="comment">// 该调用方式符合规则3</span></span><br><span class="line"><span class="keyword">await</span> logger.<span class="title function_">error</span>(<span class="string">&#x27;error&#x27;</span>, &#123;&#125;, [], <span class="string">&#x27;&#x27;</span>, <span class="number">1</span>); <span class="comment">// 该调用方式符合规则1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-3-查询"><a href="#1-2-3-查询" class="headerlink" title="1.2.3 查询"></a>1.2.3 查询</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">filter</span>(filter); <span class="comment">// 返回Promise</span></span><br></pre></td></tr></table></figure>
+
+<p>filter 支持三种模式</p>
+<ol>
+<li>过滤器</li>
+</ol>
+<p>支持传入一个函数 <code>(data: ILogDBData) =&gt; boolean</code>，回调函数是日志数据，返回 true 或者 false 表示是否该条数据命中</p>
+<p>注意: 在indexedDB模式中，由于会将函数传到 worker中执行，要求函数中不能调用其他方法或者worker中不支持的特性</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">filter</span>(<span class="function"><span class="params">item</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item.<span class="property">msg</span>.<span class="title function_">includes</span>(<span class="string">&#x27;xxx&#x27;</span>) &amp;&amp; item.<span class="property">type</span> === <span class="string">&#x27;log&#x27;</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>AND （传入json）</li>
+</ol>
+<p>传入一个json，每个属性之间会使用 and 串起来, 支持正则表达式</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">filter</span>(&#123;</span><br><span class="line">    <span class="attr">msg</span>: <span class="regexp">/xxx/i</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;log&#x27;</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>OR （传入json数组）</li>
+</ol>
+<p>传入一个json数组，数组中每个元素之间或使用 or 逻辑串起来，元素内属性之间使用 and 逻辑，与 2 中一致</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">filter</span>([&#123;</span><br><span class="line">    <span class="attr">msg</span>: <span class="regexp">/xxx/i</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;log&#x27;</span>,</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+
+<p>上面语句表示日志中 msg含有xxx 或者 type等于log</p>
+<h4 id="1-2-4-下载"><a href="#1-2-4-下载" class="headerlink" title="1.2.4 下载"></a>1.2.4 下载</h4><p>下载indexedDB中存储的日志</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">download</span>(&#123;</span><br><span class="line">    name, <span class="comment">// 可选 下载文件的名字 默认为时间戳</span></span><br><span class="line">    filter, <span class="comment">// 可选 同 1.2.3 中的 filter</span></span><br><span class="line">    keys, <span class="comment">// 可选 指定需要下载的额外属性</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-5-其他api"><a href="#1-2-5-其他api" class="headerlink" title="1.2.5 其他api"></a>1.2.5 其他api</h4><h5 id="1-2-5-1-getAll"><a href="#1-2-5-1-getAll" class="headerlink" title="1.2.5.1 getAll"></a>1.2.5.1 getAll</h5><p>获取全部日志</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">getAll</span>();</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-get"><a href="#1-2-5-1-get" class="headerlink" title="1.2.5.1 get"></a>1.2.5.1 get</h5><p>根据日志id获取某条日志</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">getAll</span>(logid);</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-count"><a href="#1-2-5-1-count" class="headerlink" title="1.2.5.1 count"></a>1.2.5.1 count</h5><p>获取日志数量</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">count</span>();</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-delete"><a href="#1-2-5-1-delete" class="headerlink" title="1.2.5.1 delete"></a>1.2.5.1 delete</h5><p>根据日志id删除某条日志</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">delete</span>(logid);</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-injectBaseInfo"><a href="#1-2-5-1-injectBaseInfo" class="headerlink" title="1.2.5.1 injectBaseInfo"></a>1.2.5.1 injectBaseInfo</h5><p>注入日志基础信息</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">injectBaseInfo</span>(&#123;</span><br><span class="line">    <span class="attr">network</span>: <span class="string">&#x27;wifi&#x27;</span>,</span><br><span class="line">    <span class="attr">phone</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-refreshTraceId"><a href="#1-2-5-1-refreshTraceId" class="headerlink" title="1.2.5.1 refreshTraceId"></a>1.2.5.1 refreshTraceId</h5><p>刷新traceid，一般用于重连等，认为是第二次访问的场景</p>
+<p>同时也会 refreshDurationStart</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">refreshTraceId</span>();</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-refreshDurationStart"><a href="#1-2-5-1-refreshDurationStart" class="headerlink" title="1.2.5.1 refreshDurationStart"></a>1.2.5.1 refreshDurationStart</h5><p>刷新计时起点，一般用于需要重新统计时间的场景</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">refreshTraceId</span>();</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-close"><a href="#1-2-5-1-close" class="headerlink" title="1.2.5.1 close"></a>1.2.5.1 close</h5><p>关闭数据库</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">close</span>();</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-clear"><a href="#1-2-5-1-clear" class="headerlink" title="1.2.5.1 clear"></a>1.2.5.1 clear</h5><p>关闭并且清空数据库</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">clear</span>();</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-5-1-destory"><a href="#1-2-5-1-destory" class="headerlink" title="1.2.5.1 destory"></a>1.2.5.1 destory</h5><p>关闭、清空并且删除数据库</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> logger.<span class="title function_">destory</span>();</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://theajack.github.io">tackchen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://theajack.github.io/posts/idb_logger/">https://theajack.github.io/posts/idb_logger/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://theajack.github.io" target="_blank">Tack Chen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BD%9C%E5%93%81/">作品</a></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/cnchar_element/"><img class="next-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-11-01%2F59f96b02db0e7.jpg%3Fdown&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660695697&amp;t=627e4508316e2419f63b0978b6343ab2" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/tc_comment/" title="评论组件"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&refer=http%3A%2F%2Fi5.3conline.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660488620&t=83a346b5db553d096a7c6f3e991bfcc3" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-15</div><div class="title">评论组件</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="tccomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/23377279?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">tackchen</div><div class="author-info__description">一花一世界 一叶一菩提</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/theajack"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/theajack" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:theajack@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://weibo.com/u/5304330572" target="_blank" title="Weibo"><i class="fab fa-weibo"></i></a><a class="social-icon" href="https://blog.csdn.net/yanxiaomu" target="_blank" title="csdn"><i class="fab fa-telegram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome, My Friend!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#idb-logger"><span class="toc-number">1.</span> <span class="toc-text">idb-logger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.0.1.</span> <span class="toc-text">🚀 基于 WebWorker 和 indexedDB 的高性能、高容量、高扩展的web端日志系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">0. 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1-%E7%89%B9%E6%80%A7"><span class="toc-number">1.1.1.</span> <span class="toc-text">0.1 特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">1. 快速使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-0-install"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.0 install</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-0-1-npm-install"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">1.0.1 npm install</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-0-2-cdn"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">1.0.2 cdn</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.1 快速使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-api-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2. api 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">1.2.1 构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-%E6%89%93%E6%97%A5%E5%BF%97"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">1.2.2 打日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">1.2.3 查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">1.2.4 下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-5-%E5%85%B6%E4%BB%96api"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">1.2.5 其他api</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-getAll"><span class="toc-number">1.2.3.5.1.</span> <span class="toc-text">1.2.5.1 getAll</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-get"><span class="toc-number">1.2.3.5.2.</span> <span class="toc-text">1.2.5.1 get</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-count"><span class="toc-number">1.2.3.5.3.</span> <span class="toc-text">1.2.5.1 count</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-delete"><span class="toc-number">1.2.3.5.4.</span> <span class="toc-text">1.2.5.1 delete</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-injectBaseInfo"><span class="toc-number">1.2.3.5.5.</span> <span class="toc-text">1.2.5.1 injectBaseInfo</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-refreshTraceId"><span class="toc-number">1.2.3.5.6.</span> <span class="toc-text">1.2.5.1 refreshTraceId</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-refreshDurationStart"><span class="toc-number">1.2.3.5.7.</span> <span class="toc-text">1.2.5.1 refreshDurationStart</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-close"><span class="toc-number">1.2.3.5.8.</span> <span class="toc-text">1.2.5.1 close</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-clear"><span class="toc-number">1.2.3.5.9.</span> <span class="toc-text">1.2.5.1 clear</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-5-1-destory"><span class="toc-number">1.2.3.5.10.</span> <span class="toc-text">1.2.5.1 destory</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/idb_logger/" title="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统"/></a><div class="content"><a class="title" href="/posts/idb_logger/" title="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统">基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统</a><time datetime="2022-08-12T00:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/cnchar_element/" title="Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-11-01%2F59f96b02db0e7.jpg%3Fdown&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660695697&amp;t=627e4508316e2419f63b0978b6343ab2" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）"/></a><div class="content"><a class="title" href="/posts/cnchar_element/" title="Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）">Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）</a><time datetime="2022-07-18T00:00:00.000Z" title="发表于 2022-07-18 00:00:00">2022-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/tc_comment/" title="评论组件"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="评论组件"/></a><div class="content"><a class="title" href="/posts/tc_comment/" title="评论组件">评论组件</a><time datetime="2022-07-15T00:00:00.000Z" title="发表于 2022-07-15 00:00:00">2022-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/hello_world/" title="Hello World"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F165354c2bcea59e835575a2e88d99fd1b1742add.jpg&amp;refer=http%3A%2F%2Fi0.hdslb.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660489464&amp;t=cef8f7fb35b1cb825b4f8d3c4161fce8" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/posts/hello_world/" title="Hello World">Hello World</a><time datetime="2022-07-03T00:00:00.000Z" title="发表于 2022-07-03 00:00:00">2022-07-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By tackchen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadTCComent () {
+  var appTitle = 'tackchen_blog';
+  var name = appTitle + location.pathname;
+
+  if(name[name.length-1]==='/'){
+    name = name.substring(0, name.length-1);
+  }
+
+  console.log('comment, app name='+name)
+
+  var d = document, s = d.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/tc-comment@1.0.0/tc-comment.min.js';
+  s.onload = function(){
+    window.TComment.initComment({
+      darkSelector: '[data-theme=dark]',
+      el: '#tccomment',
+      appName: name,
+    })
+  };
+  (d.head || d.body).appendChild(s);
+}
+
+loadTCComent();</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

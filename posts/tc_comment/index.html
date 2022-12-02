@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>评论组件 | Tack Chen</title><meta name="keywords" content="tc-comment,评论组件,tackchen"><meta name="author" content="tackchen"><meta name="copyright" content="tackchen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="tc-commentEnglish | 使用案例 一个支持markdowm和emoji评论组件，无需任何配置，无需申请任何账号，即引即用 特性 一行代码引入，无需任何配置 无需申请任何账号，即引即用 支持markdowm和emoji评论组件 支持实时预览 支持代码消息的插入链接 支持深色模式，适配网站原有深色模式 支持自定义 services 和 url 支持插入图片  快速使用1234impor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="评论组件">
+<meta property="og:url" content="https://theajack.github.io/posts/tc_comment/index.html">
+<meta property="og:site_name" content="Tack Chen">
+<meta property="og:description" content="tc-commentEnglish | 使用案例 一个支持markdowm和emoji评论组件，无需任何配置，无需申请任何账号，即引即用 特性 一行代码引入，无需任何配置 无需申请任何账号，即引即用 支持markdowm和emoji评论组件 支持实时预览 支持代码消息的插入链接 支持深色模式，适配网站原有深色模式 支持自定义 services 和 url 支持插入图片  快速使用1234impor">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&refer=http%3A%2F%2Fi5.3conline.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660488620&t=83a346b5db553d096a7c6f3e991bfcc3">
+<meta property="article:published_time" content="2022-07-15T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-02T14:05:50.866Z">
+<meta property="article:author" content="tackchen">
+<meta property="article:tag" content="作品">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&refer=http%3A%2F%2Fi5.3conline.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660488620&t=83a346b5db553d096a7c6f3e991bfcc3"><link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/23377279?s=40&v=4"><link rel="canonical" href="https://theajack.github.io/posts/tc_comment/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '评论组件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-02 14:05:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/23377279?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 作品</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tack Chen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 作品</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">评论组件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-15T00:00:00.000Z" title="发表于 2022-07-15 00:00:00">2022-07-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-02T14:05:50.866Z" title="更新于 2022-12-02 14:05:50">2022-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%BA%93/">工具类库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="评论组件"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="tc-comment"><a href="#tc-comment" class="headerlink" title="tc-comment"></a><a target="_blank" rel="noopener" href="https://github.com/theajack/comment">tc-comment</a></h2><p><strong><a target="_blank" rel="noopener" href="https://github.com/theajack/comment">English</a> | <a href="https://theajack.github.io/message-board/?app=tc-comment">使用案例</a></strong></p>
+<p>一个支持markdowm和emoji评论组件，无需任何配置，无需申请任何账号，即引即用</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ol>
+<li>一行代码引入，无需任何配置</li>
+<li>无需申请任何账号，即引即用</li>
+<li>支持markdowm和emoji评论组件</li>
+<li>支持实时预览</li>
+<li>支持代码消息的插入链接</li>
+<li>支持深色模式，适配网站原有深色模式</li>
+<li>支持自定义 services 和 url</li>
+<li>支持插入图片</li>
+</ol>
+<h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;initComment&#125; <span class="keyword">from</span> <span class="string">&#x27;tc-comment&#x27;</span>;</span><br><span class="line"><span class="title function_">initComment</span>(&#123;</span><br><span class="line">    <span class="attr">appName</span>: <span class="string">&#x27;xxx&#x27;</span>, <span class="comment">// 自己起一个你的应用名称</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>cdn 使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/tc-comment/tc-comment.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="title class_">TComment</span>.<span class="title function_">initComment</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">appName</span>: <span class="string">&#x27;xxx&#x27;</span>, <span class="comment">// 自己起一个你的应用名称</span></span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="vue-组件引入"><a href="#vue-组件引入" class="headerlink" title="vue 组件引入"></a>vue 组件引入</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Comment</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;tc-comment&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Comment</span>.<span class="title function_">init</span>(&#123;<span class="attr">appName</span>: <span class="string">&#x27;xxx&#x27;</span>&#125;); <span class="comment">// 自己起一个你的应用名称</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="attr">components</span>: &#123;<span class="title class_">Comment</span>&#125;,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">initComment</span>(&#123;</span><br><span class="line">    <span class="attr">appName</span>: <span class="built_in">string</span>; </span><br><span class="line">    el?: <span class="title class_">HTMLElement</span> | <span class="built_in">string</span>; <span class="comment">// Comment.init 传入该参数无效</span></span><br><span class="line">    theme?: <span class="string">&#x27;dark&#x27;</span> | <span class="string">&#x27;light&#x27;</span>;</span><br><span class="line">    darkSelector?: <span class="built_in">string</span>;</span><br><span class="line">    services?: &#123;</span><br><span class="line">        <span class="attr">insertComment</span>: <span class="title class_">InsertComment</span>;</span><br><span class="line">        <span class="attr">getComment</span>: <span class="title class_">GetComment</span>;</span><br><span class="line">        <span class="attr">insertReply</span>: <span class="title class_">InsertReply</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    urlConfig?: &#123;</span><br><span class="line">        <span class="attr">host</span>: <span class="built_in">string</span>;</span><br><span class="line">        get?: <span class="built_in">string</span>;</span><br><span class="line">        insert?: <span class="built_in">string</span>;</span><br><span class="line">        reply?: <span class="built_in">string</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    dataHandler?: &#123;</span><br><span class="line">        get?: <span class="function">(<span class="params">data: IGetOption</span>) =&gt;</span> <span class="built_in">any</span>;</span><br><span class="line">        insert?: <span class="function">(<span class="params">data: IComment</span>) =&gt;</span> <span class="built_in">any</span>;</span><br><span class="line">        reply?: <span class="function">(<span class="params">data: IReply</span>) =&gt;</span> <span class="built_in">any</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// Comment.init 参数与上述参数一致</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>appName: 必选 起一个应用名称，建议数字+字母组合，支持使用 &#x2F; 划分目录 如 appName &#x3D; blog&#x2F;2022&#x2F;hello</li>
+<li>el 渲染的容器 默认会append一个元素到body上</li>
+<li>theme 主题色</li>
+<li>darkSelector 填写一个深色主题色的选择器，一般用于适配主网站的深色主题</li>
+<li>services，urlConfig，dataHandler 后续详细介绍</li>
+</ol>
+<h2 id="自定义-services"><a href="#自定义-services" class="headerlink" title="自定义 services"></a>自定义 services</h2><p>tc-comment 支持自定义方法来实现你自己的请求方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;initComment&#125; <span class="keyword">from</span> <span class="string">&#x27;tc-comment&#x27;</span>;</span><br><span class="line"><span class="title function_">initComment</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    <span class="attr">services</span>: &#123; <span class="comment">// 请自行注入三个请求 插入评论 插入回复 和 获取评论</span></span><br><span class="line">        <span class="title function_">insertComment</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">getComment</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">getComment</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>insertComment 和 getComment ts声明</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">InsertComment</span> &#123;</span><br><span class="line">    (<span class="attr">data</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">contact</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">content</span>: <span class="built_in">string</span>;</span><br><span class="line">    &#125;): <span class="title class_">Promise</span>&lt;<span class="built_in">boolean</span>&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">InsertReply</span> &#123;</span><br><span class="line">    (<span class="attr">data</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">contact</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">content</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">commentId</span>: <span class="built_in">number</span>;</span><br><span class="line">    &#125;): <span class="title class_">Promise</span>&lt;<span class="built_in">boolean</span>&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">GetComment</span> &#123;</span><br><span class="line">    (<span class="attr">query</span>: &#123;</span><br><span class="line">        index?: <span class="built_in">number</span>;</span><br><span class="line">        size?: <span class="built_in">number</span>;</span><br><span class="line">        all?: <span class="built_in">boolean</span>;</span><br><span class="line">        condition?: <span class="built_in">object</span>;</span><br><span class="line">    &#125;): <span class="title class_">Promise</span>&lt;<span class="title class_">Array</span>&lt;&#123;</span><br><span class="line">        <span class="attr">createTime</span>: <span class="built_in">number</span>;</span><br><span class="line">        <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">content</span>: <span class="built_in">string</span>;</span><br><span class="line">    &#125;&gt;&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义接口-urlConfig"><a href="#自定义接口-urlConfig" class="headerlink" title="自定义接口 urlConfig"></a>自定义接口 urlConfig</h2><p>tc-comment 支持通过配置 urlConfig 自定义接口</p>
+<p>urlConfig 参数优先级低于 services参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;initComment&#125; <span class="keyword">from</span> <span class="string">&#x27;tc-comment&#x27;</span>;</span><br><span class="line"><span class="title function_">initComment</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    <span class="attr">urlConfig</span>: &#123;</span><br><span class="line">        <span class="attr">host</span>:<span class="string">&#x27;www.example.com&#x27;</span>,</span><br><span class="line">        <span class="attr">get</span>:<span class="string">&#x27;/api/comment/get&#x27;</span>,</span><br><span class="line">        <span class="attr">insert</span>:<span class="string">&#x27;/api/comment/insert&#x27;</span>,</span><br><span class="line">        <span class="attr">reply</span>:<span class="string">&#x27;/api/reply/insert&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用 urlConfig 参数的话，tc-comment 会调用该域名下面的三个接口，请自行部署</p>
+<ol>
+<li>get 请求 用于拉取评论</li>
+</ol>
+<ul>
+<li>path: urlConfig.get</li>
+<li>method: get</li>
+<li>参数: index, size, all, condition, app</li>
+<li>返回: {data: {code: 0, data: [CommentObject]}} 0表示成功</li>
+<li>responseType: json</li>
+</ul>
+<p>CommentObject</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">id</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">contact</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">content</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="attr">createTime</span>: <span class="built_in">number</span>; <span class="comment">// 时间戳</span></span><br><span class="line">    <span class="attr">reply</span>: <span class="title class_">Array</span>&lt;&#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">contact</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">content</span>: <span class="built_in">string</span>;</span><br><span class="line">        <span class="attr">createTime</span>: <span class="built_in">number</span>; <span class="comment">// 时间戳</span></span><br><span class="line">    &#125;&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>insert 请求 用于上传评论</li>
+</ol>
+<ul>
+<li>path: urlConfig.insert</li>
+<li>method: post</li>
+<li>参数: name, contact, content, app</li>
+<li>返回: {data: {code: 0}} 0表示成功</li>
+<li>responseType: json</li>
+</ul>
+<ol start="3">
+<li>reply 请求 用于上传回复</li>
+</ol>
+<ul>
+<li>path: urlConfig.insert</li>
+<li>method: post</li>
+<li>参数: name, contact, content, commentId, app</li>
+<li>返回: {data: {code: 0}} 0表示成功</li>
+<li>responseType: json</li>
+</ul>
+<h2 id="dataHandler"><a href="#dataHandler" class="headerlink" title="dataHandler"></a>dataHandler</h2><p>使用自定义 urlConfig时 可以搭配 dataHandle 修改请求数据</p>
+<p>使用方式如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;initComment&#125; <span class="keyword">from</span> <span class="string">&#x27;tc-comment&#x27;</span>;</span><br><span class="line"><span class="title function_">initComment</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    <span class="attr">urlConfig</span>: &#123;</span><br><span class="line">        <span class="attr">host</span>:<span class="string">&#x27;www.example.com&#x27;</span>,</span><br><span class="line">        <span class="attr">get</span>:<span class="string">&#x27;/api/comment/get&#x27;</span>,</span><br><span class="line">        <span class="attr">insert</span>:<span class="string">&#x27;/api/comment/insert&#x27;</span>,</span><br><span class="line">        <span class="attr">reply</span>:<span class="string">&#x27;/api/reply/insert&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="attr">dataHandler</span>: &#123;</span><br><span class="line">        <span class="attr">get</span>: <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;<span class="keyword">return</span> data&#125;,</span><br><span class="line">        <span class="attr">insert</span>: <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;<span class="keyword">return</span> data&#125;,</span><br><span class="line">        <span class="attr">reply</span>: <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;<span class="keyword">return</span> data&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://theajack.github.io">tackchen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://theajack.github.io/posts/tc_comment/">https://theajack.github.io/posts/tc_comment/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://theajack.github.io" target="_blank">Tack Chen</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BD%9C%E5%93%81/">作品</a></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/cnchar_element/"><img class="prev-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-11-01%2F59f96b02db0e7.jpg%3Fdown&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660695697&amp;t=627e4508316e2419f63b0978b6343ab2" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）</div></div></a></div><div class="next-post pull-right"><a href="/posts/hello_world/"><img class="next-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F165354c2bcea59e835575a2e88d99fd1b1742add.jpg&amp;refer=http%3A%2F%2Fi0.hdslb.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660489464&amp;t=cef8f7fb35b1cb825b4f8d3c4161fce8" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/idb_logger/" title="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&refer=http%3A%2F%2Fi5.3conline.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660488620&t=83a346b5db553d096a7c6f3e991bfcc3" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-12</div><div class="title">基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="tccomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/23377279?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">tackchen</div><div class="author-info__description">一花一世界 一叶一菩提</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/theajack"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/theajack" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:theajack@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://weibo.com/u/5304330572" target="_blank" title="Weibo"><i class="fab fa-weibo"></i></a><a class="social-icon" href="https://blog.csdn.net/yanxiaomu" target="_blank" title="csdn"><i class="fab fa-telegram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome, My Friend!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tc-comment"><span class="toc-number">1.</span> <span class="toc-text">tc-comment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">快速使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5"><span class="toc-number">4.</span> <span class="toc-text">vue 组件引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">配置参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-services"><span class="toc-number">6.</span> <span class="toc-text">自定义 services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3-urlConfig"><span class="toc-number">7.</span> <span class="toc-text">自定义接口 urlConfig</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataHandler"><span class="toc-number">8.</span> <span class="toc-text">dataHandler</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/idb_logger/" title="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统"/></a><div class="content"><a class="title" href="/posts/idb_logger/" title="基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统">基于WebWorker和indexedDB的高性能、高容量、高扩展的web端日志系统</a><time datetime="2022-08-12T00:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/cnchar_element/" title="Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-11-01%2F59f96b02db0e7.jpg%3Fdown&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660695697&amp;t=627e4508316e2419f63b0978b6343ab2" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）"/></a><div class="content"><a class="title" href="/posts/cnchar_element/" title="Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）">Element-UI Select 下拉框 根据汉字拼音过滤选择选项（使用filter-method，filterable属性）</a><time datetime="2022-07-18T00:00:00.000Z" title="发表于 2022-07-18 00:00:00">2022-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/tc_comment/" title="评论组件"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="评论组件"/></a><div class="content"><a class="title" href="/posts/tc_comment/" title="评论组件">评论组件</a><time datetime="2022-07-15T00:00:00.000Z" title="发表于 2022-07-15 00:00:00">2022-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/hello_world/" title="Hello World"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F165354c2bcea59e835575a2e88d99fd1b1742add.jpg&amp;refer=http%3A%2F%2Fi0.hdslb.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660489464&amp;t=cef8f7fb35b1cb825b4f8d3c4161fce8" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/posts/hello_world/" title="Hello World">Hello World</a><time datetime="2022-07-03T00:00:00.000Z" title="发表于 2022-07-03 00:00:00">2022-07-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&amp;refer=http%3A%2F%2Fi5.3conline.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1660488620&amp;t=83a346b5db553d096a7c6f3e991bfcc3')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By tackchen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadTCComent () {
+  var appTitle = 'tackchen_blog';
+  var name = appTitle + location.pathname;
+
+  if(name[name.length-1]==='/'){
+    name = name.substring(0, name.length-1);
+  }
+
+  console.log('comment, app name='+name)
+
+  var d = document, s = d.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/tc-comment@1.0.0/tc-comment.min.js';
+  s.onload = function(){
+    window.TComment.initComment({
+      darkSelector: '[data-theme=dark]',
+      el: '#tccomment',
+      appName: name,
+    })
+  };
+  (d.head || d.body).appendChild(s);
+}
+
+loadTCComent();</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
