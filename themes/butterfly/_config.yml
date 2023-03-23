@@ -89,11 +89,11 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg6.51tietu.net%2Fpic%2F2019-082020%2Flglelbwbe1ilglelbwbe1i.jpg&refer=http%3A%2F%2Fimg6.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659449974&t=8cf6652aab3f230b877ba9a5362e651d
+index_img: https://img.zcool.cn/community/038e4d85913fc54a801216a3ef96b11.jpg
 
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg6.51tietu.net%2Fpic%2F2019-082020%2Flglelbwbe1ilglelbwbe1i.jpg&refer=http%3A%2F%2Fimg6.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659449974&t=8cf6652aab3f230b877ba9a5362e651d
+default_top_img: https://img.zcool.cn/community/038e4d85913fc54a801216a3ef96b11.jpg
 
 # The banner image of archive page
 archive_img: https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi5.3conline.com%2Fimages%2Fpiclib%2F201105%2F04%2Fbatch%2F1%2F93468%2F13044854409495s2q5id96k.jpg&refer=http%3A%2F%2Fi5.3conline.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660488620&t=83a346b5db553d096a7c6f3e991bfcc3
@@ -125,7 +125,7 @@ cover:
   # left/right/both
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
-  default_cover: https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg6.51tietu.net%2Fpic%2F2019-082020%2Flglelbwbe1ilglelbwbe1i.jpg&refer=http%3A%2F%2Fimg6.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659449974&t=8cf6652aab3f230b877ba9a5362e651d
+  default_cover: https://img.zcool.cn/community/038e4d85913fc54a801216a3ef96b11.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:

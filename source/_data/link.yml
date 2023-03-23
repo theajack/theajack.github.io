@@ -13,6 +13,26 @@
       link: https://shiyix.cn/jsbox
       icon: code
       descr: JS在线运行沙箱环境
+    - name: Alins
+      link: https://alinsjs.github.io/docs/
+      icon: cubes
+      descr: All-in-JS前端框架
+    - name: Sener
+      link: https://github.com/theajack/sener
+      icon: server
+      descr: 高可扩展的服务端框架
+    - name: WebOS
+      link: https://github.com/theajack/webos
+      icon: terminal
+      descr: Web终端
+    - name: MacOS
+      link: https://github.com/theajack/mac
+      icon: apple
+      descr: 基于FileSystem的MacOS
+    - name: eveit
+      link: https://github.com/theajack/eveit
+      icon: sliders
+      descr: 类型支持良好的事件库
     - name: tc-comment
       link: https://github.com/theajack/comment
       icon: comment-alt
@@ -33,6 +53,22 @@
       link: https://shiyix.cn/easy-icon
       icon: picture
       descr: 丰富的css图标库
+    - name: ebuild-cli
+      link: https://github.com/theajack/ebuild-cli
+      icon: cogs
+      descr: 快速搭建项目脚手架
+    - name: cross-window-message
+      link: https://shiyix.cn/cross-window-message
+      icon: window-alt
+      descr: 优雅的跨窗口通信方案
+    - name: canvas-render-html
+      link: https://github.com/theajack/canvas-render-html
+      icon: html5
+      descr: 基于Pixi绘制html
+    - name: pixi-vue
+      link: https://github.com/theajack/pixi-vue
+      icon: shield
+      descr: Pixi+Vue3
     - name: tc-event
       link: https://github.com/theajack/tc-event
       icon: random
@@ -45,10 +81,6 @@
       link: https://shiyix.cn/qrcode
       icon: qrcode
       descr: 二维码生成解析工具
-    - name: cross-window-message
-      link: https://shiyix.cn/cross-window-message
-      icon: window-alt
-      descr: 优雅的跨窗口通信方案
     - name: mp-mixin
       link: https://github.com/theajack/mp-mixin
       icon: rocket
@@ -61,10 +93,6 @@
       link: https://github.com/theajack/easy-test-lib
       icon: check-circle-o
       descr: 轻量级测试方案
-    - name: ebuild-cli
-      link: https://github.com/theajack/ebuild-cli
-      icon: cogs
-      descr: 快速搭建项目脚手架
     - name: landscape-simulator
       link: https://shiyix.cn/landscape-simulator
       icon: mobile
@@ -77,10 +105,22 @@
       link: https://github.com/theajack/easy-dom
       icon: branch
       descr: 原生dom操作的封装
+    - name: Selon
+      link: https://github.com/theajack/selon
+      icon: database
+      descr: json查询语句
     - name: jetee
       link: https://shiyix.cn/jetee
       icon: file-code
       descr: 轻量级前端框架
+    - name: jetterjs
+      link: https://shiyix.cn/jetterjs
+      icon: carousel
+      descr: 前端工具库
+    - name: Util
+      link: https://github.com/theajack/util
+      icon: key
+      descr: 工具函数库
 
 - class_name: 工具
   class_desc: 在线工具箱
@@ -101,6 +141,10 @@
       link: https://shiyix.cn/tool
       icon: wrench
       descr: For Fun!
+    - name: 工资计算器
+      link: https://github.com/theajack/salary
+      icon: dollar
+      descr: 2022年最新计税规则
 
 - class_name: 游戏
   class_desc: 玩一玩
@@ -113,6 +157,10 @@
       link: https://shiyix.cn/pinao
       icon: music
       descr: 敲敲键盘弹钢琴
+    - name: MacOS
+      link: https://github.com/theajack/mac
+      icon: apple
+      descr: Web上体验MacOS
     - name: 炸弹人大作战
       link: https://shiyix.cn/bombbattle
       icon: exclamation-sign
