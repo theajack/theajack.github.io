@@ -8,10 +8,11 @@
       .copyright!= `&copy;${nowYear} By ${config.author}`
   if theme.footer.copyright
     .framework-info
-      span= _p('footer.framework') + ' '
-      a(href='https://hexo.io')= 'Hexo'
-      span.footer-separator |
-      span= _p('footer.theme') + ' '
-      a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+      //- span= _p('footer.framework') + ' '
+      //- a(href='https://hexo.io')= 'Hexo'
+      //- span.footer-separator |
+      //- span= _p('footer.theme') + ' '
+      //- a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+      a(href='https://beian.miit.gov.cn/')= '沪ICP备20020834号-1'
   if theme.footer.custom_text
     .footer_custom_text!=`${theme.footer.custom_text}`
